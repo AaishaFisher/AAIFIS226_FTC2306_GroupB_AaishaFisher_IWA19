@@ -26,6 +26,26 @@ for (let i = 0; i < books.length; i++) {
     books[i].id = `book${i + 1}`; 
    }
    
+   const updatedBooks = {};
+
+for (const key in books) {
+    const book = books[key];
+    const authorKey = `author${Object.keys(updatedAuthors).findIndex(
+        (authorId) => authors[authorId] === book.author
+    ) + 1}`;
+    const genreKey = `genre${Object.keys(updatedGenres).findIndex(
+        (genreId) => genres[genreId] === book.genre
+    ) + 1}`;
+
+    updatedBooks[key] = {
+        ...book,
+        author: authorKey,
+        genre: genreKey,
+    };
+}
+
+console.log(updatedBooks);
+
 
 /**
  * Represents the books in the array object
@@ -51,15 +71,15 @@ if (!bookDetails || !Array.isArray(books)) throw new Error('Source required')
  */
 if (!range || range.length < 2) throw new Error('Range must be an array with two numbers')
 
-// const lightMode = {
-//     dark: '10, 10, 20',
-//     light: '255, 255, 255',
-// }
+ const lightMode = {
+     dark: '10, 10, 20',
+     light: '255, 255, 255',
+}
 
-// const darkMode = {
-//     dark: '255, 255, 255',
-//     light: '10, 10, 20',
-// }
+ const darkMode = {
+     dark: '255, 255, 255',
+     light: '10, 10, 20',
+ }
 
 /**
  * this will randowmize the book options in the book array.
@@ -130,21 +150,21 @@ data-search-genres.appendChild(genres)
      authors.appendChild(element)
  }
 
-// data-search-authors.appendChild(authors)
+ data-search-authors.appendChild(authors)
 
-// data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'nightMode' : 'lightMode'
-// v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
+  data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'nightMode' : 'lightMode'
+ v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
 
-// documentElement.style.setProperty('--color-dark', css[v].dark);
-// documentElement.style.setProperty('--color-light', css[v].light);
-// data-list-button = "Show more (books.length - BOOKS_PER_PAGE)"
+ documentElement.style.setProperty('--color-dark', css[v].dark);
+ documentElement.style.setProperty('--color-light', css[v].light);
+ data-list-button = "Show more (books.length - BOOKS_PER_PAGE)"
 
-// data-list-button.disabled = !(matches.length - [page * BOOKS_PER_PAGE] > 0)
+ data-list-button.disabled = !(matches.length - [page * BOOKS_PER_PAGE] > 0)
 
-// data-list-button.innerHTML = /* html */ [
-//     '<span>Show more</span>',
-//     '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
-// ]
+ data-list-button.innerHTML = /* html */ [
+     '<span>Show more</span>',
+     '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
+ ]
 
 // data-search-cancel.click() { data-search-overlay.open === false }
 // data-settings-cancel.click() { querySelect(data-settings-overlay).open === false }
