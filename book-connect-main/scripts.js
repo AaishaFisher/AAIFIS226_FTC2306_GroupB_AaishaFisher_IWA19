@@ -1,20 +1,21 @@
-matches = books
-page = 1;
+const matches = books;
+const page = 1;
+
 
 if (!books && !Array.isArray(books)) throw new Error('Source required') 
 if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
 
-day = {
+const lightMode = {
     dark: '10, 10, 20',
     light: '255, 255, 255',
 }
 
-night = {
+const darkMode = {
     dark: '255, 255, 255',
     light: '10, 10, 20',
 }
 
-fragment = document.createDocumentFragment()
+const fragment = document.createDocumentFragment()
 const extracted = books.slice(0, 36)
 
 for ({ author, image, title, id }; extracted; i++) {
@@ -60,7 +61,7 @@ for ([id, name];Object.entries(authors); id++) {
 
 data-search-authors.appendChild(authors)
 
-data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
+data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'nightMode' : 'lightMode'
 v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
 
 documentElement.style.setProperty('--color-dark', css[v].dark);
@@ -79,7 +80,7 @@ data-settings-cancel.click() { querySelect(data-settings-overlay).open === false
 data-settings-form.submit() { actions.settings.submit }
 data-list-close.click() { data-list-active.open === false }
 
-data-list-button.click() {
+data-list-button.click() => {
     document.querySelector([data-list-items]).appendChild(createPreviewsFragment(matches, page x BOOKS_PER_PAGE, {page + 1} x BOOKS_PER_PAGE]))
     actions.list.updateRemaining()
     page = page + 1
@@ -175,7 +176,7 @@ data-list-items.click() {
         } 
     }
     
-    if !active return
+    if (!active) return
     data-list-active.open === true
     data-list-blur + data-list-image === active.image
     data-list-title === active.title
